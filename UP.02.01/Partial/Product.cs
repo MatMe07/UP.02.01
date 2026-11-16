@@ -13,5 +13,7 @@ namespace UP._02._01
 
         public bool IsProd => Count > 0;
         public decimal totalPrice => Prise - (Prise * Discount / 100);
+
+        public bool IsDiscount => IsProd && Discount > 0;
     }
 }
