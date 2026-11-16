@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:UP._02._01"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CatalogProductsPage" Loaded="Page_Loaded">
+      Title="CatalogProductsPage" Loaded="Page_Loaded" >
     <Page.Resources>
         <local:BoolVisibleConverter x:Key="boolVisibleConverter"/>
     </Page.Resources>
@@ -16,17 +16,17 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" x:Name="stckPanelPoisk" Margin="0 0 0 10">
-            <TextBox MinWidth="200" Margin="0 0 5 0" VerticalAlignment="Bottom"/>
+            <TextBox MinWidth="200" Margin="0 0 5 0" VerticalAlignment="Bottom" Text="{Binding TxtSearch, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"/>
             <StackPanel Margin="5 0">
                 <TextBlock Text="Сортировка" />
 
-                <ComboBox Width="100"/>
+                <ComboBox MinWidth="100" x:Name="comboSort" SelectedItem="{Binding SortText, Mode=TwoWay}" />
                 
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Фильтровать" />
 
-                <ComboBox Width="100" ItemsSource="{Binding }"/>
+                <ComboBox Width="130" x:Name="comboFilt" SelectedItem="{Binding FiltText}"/>
                 
             </StackPanel>
         </StackPanel>
