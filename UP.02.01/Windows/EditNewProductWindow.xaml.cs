@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +18,28 @@ namespace UP._02._01.Windows
     /// <summary>
     /// Логика взаимодействия для EditNewProductWindow.xaml
     /// </summary>
-    public partial class EditNewProductWindow : Window
+    public partial class EditNewProductWindow : Window, INotifyPropertyChanged
     {
-        public EditNewProductWindow()
+        private Product _product;
+        public Product Product
         {
+            get { return _product; }
+            set
+            {
+                _product = value;
+                OnPropertyChanged(nameof(Product));
+            }
+        }
+        public EditNewProductWindow(Product product = null)
+        {
+            this.Product = product ?? new Product();
             InitializeComponent();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

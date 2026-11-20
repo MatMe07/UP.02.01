@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UP._02._01.Windows"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:EditNewProductWindow}"
         Title="EditNewProductWindow" Height="450" Width="286">
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="{Binding Product.CoverPathImg}" Width="100" Grid.Column="0"/>
+        <TextBlock Text="Наименование: " Grid.Row="0"/>
+        <TextBlock Text="Категория: " Grid.Row="1"/>
+
     </Grid>
 </Window>

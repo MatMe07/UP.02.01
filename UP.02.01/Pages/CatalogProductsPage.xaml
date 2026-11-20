@@ -31,7 +31,7 @@
             </StackPanel>
         </StackPanel>
         <ListBox Grid.Row="1"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                 ItemsSource="{Binding Products}" HorizontalContentAlignment="Stretch" d:ItemsSource="{d:SampleData ItemCount=5}">
+                 ItemsSource="{Binding Products}" HorizontalContentAlignment="Stretch" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="ListBox_MouseDoubleClick">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <!--<WrapPanel>-->
@@ -56,11 +56,12 @@
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
+                            <!--<StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding ProductsCategory.Name}" FontWeight="DemiBold" TextWrapping="Wrap"/>
                                 <TextBlock Text="  |  " FontWeight="DemiBold" TextWrapping="Wrap"/>
                                 <TextBlock Text="{Binding Name}" FontWeight="DemiBold" TextWrapping="Wrap"/>
-                            </StackPanel>
+                            </StackPanel>-->
+                            <TextBlock Text="{Binding CategoryNameAndName}" Grid.ColumnSpan="2" FontWeight="DemiBold" TextTrimming="CharacterEllipsis"/>
 
                             <TextBlock Text="Описание товара:" Grid.Row="1"/>
                             <TextBlock Text="{Binding Deskription}" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap"/>

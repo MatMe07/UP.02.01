@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UP._02._01.Windows;
 
 namespace UP._02._01.Pages
 {
@@ -190,6 +191,13 @@ namespace UP._02._01.Pages
             {
                 Products.Add(product);
             }
+        }
+
+        private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Product product = (sender as ListItem).DataContext as Product;
+            var window = new EditNewProductWindow(product);
+            window.ShowDialog() ;
         }
     }
 }

@@ -14,6 +14,7 @@ namespace UP._02._01
         public bool IsProd => Count > 0;
         public decimal totalPrice => Prise - (Prise * Discount / 100);
 
+        public string CategoryNameAndName => $"{ProductsCategory.Name}  |  {Name}";
         public bool IsDiscount => IsProd && Discount > 0;
     }
 }
