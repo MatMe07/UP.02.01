@@ -14,13 +14,8 @@ namespace UP._02._01
     
     public partial class Order
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order()
-        {
-            this.ProductsOrders = new HashSet<ProductsOrder>();
-        }
-    
         public int ID { get; set; }
+        public string Articule { get; set; }
         public System.DateTime DateOrder { get; set; }
         public System.DateTime DateDelivery { get; set; }
         public int PickupPointsId { get; set; }
@@ -31,7 +26,5 @@ namespace UP._02._01
         public virtual OrderStatus OrderStatus { get; set; }
         public virtual PickupPoint PickupPoint { get; set; }
         public virtual User User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductsOrder> ProductsOrders { get; set; }
     }
 }

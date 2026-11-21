@@ -35,12 +35,16 @@ namespace UP._02._01.Windows
             }
         }
 
+        private Product origProduct;
+
         public ObservableCollection<ProductsCategory> productsCategories { get; } = new ObservableCollection<ProductsCategory>();
         public ObservableCollection<Supplier> Suppliers { get; } = new ObservableCollection<Supplier>();
         public ObservableCollection<Manufacturer> Manufactureres { get; } = new ObservableCollection<Manufacturer>();
         private bool isNew = true;
         public EditNewProductWindow(Product product = null)
         {
+
+            origProduct = Clone(product);
             this.Product = product ?? new Product();
             isNew = product == null;
             InitializeComponent();
@@ -99,7 +103,7 @@ namespace UP._02._01.Windows
             try
             {
                 
-                Product.ID = Product.ID ?? "dfgsdfg";
+                //Product.Articule = Product.Articule;
                 Core.context.Products.AddOrUpdate(Product);
                 Core.context.SaveChanges();
             }
@@ -118,6 +122,49 @@ namespace UP._02._01.Windows
                 txtPrice.Text = Product.Prise.ToString().Replace(',', '.');
                 MessageBox.Show("Неверный формат");
             }
+        }
+        public Product Clone(Product product)
+        {
+            var origProd = new Product();
+            origProd.Name = product.Name;
+            origProd.UnitOfMeasures = product.UnitOfMeasures;
+            origProd.Prise = product.Prise;
+            origProd.Supplier = product.Supplier;
+            origProd.Manufacturer = product.Manufacturer;
+            origProd.ProductsCategory = product.ProductsCategory;
+            origProd.Discount = product.Discount;
+            origProd.Count = product.Count;
+            origProd.Deskription = product.Deskription;
+            origProd.CoverPath = product.CoverPath;
+            return origProd;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (Product.Equals(origProduct))
+            {
+                //this.Close();
+                DialogResult = false;
+                Close();
+            }
+            if (MessageBox.Show("Есть несохраненные изменения", "Предупреждение", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                Product.Name = origProduct.Name;
+                Product.UnitOfMeasures = origProduct.UnitOfMeasures;
+                Product.Prise= origProduct.Prise;
+                Product.Supplier = origProduct.Supplier;
+                Product.Manufacturer= origProduct.Manufacturer;
+                Product.ProductsCategory= origProduct.ProductsCategory;
+                Product.Discount= origProduct.Discount;
+                Product.Count= origProduct.Count;
+                Product.Deskription= origProduct.Deskription;
+                Product.CoverPath= origProduct.CoverPath;
+                DialogResult = true;
+
+                this.Close();
+            }
+
+            //this.Close();
         }
     }
 }

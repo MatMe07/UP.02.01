@@ -14,13 +14,8 @@ namespace UP._02._01
     
     public partial class Product
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
-        {
-            this.ProductsOrders = new HashSet<ProductsOrder>();
-        }
-    
-        public string ID { get; set; }
+        public int ID { get; set; }
+        public string Articule { get; set; }
         public string Name { get; set; }
         public string UnitOfMeasures { get; set; }
         public decimal Prise { get; set; }
@@ -35,7 +30,5 @@ namespace UP._02._01
         public virtual Manufacturer Manufacturer { get; set; }
         public virtual ProductsCategory ProductsCategory { get; set; }
         public virtual Supplier Supplier { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductsOrder> ProductsOrders { get; set; }
     }
 }

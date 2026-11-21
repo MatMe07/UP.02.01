@@ -21,13 +21,9 @@ namespace UP._02._01
         }
     
         public int ID { get; set; }
-        public int Index { get; set; }
-        public string City { get; set; }
-        public int StreetId { get; set; }
-        public Nullable<int> House { get; set; }
+        public string Address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
-        public virtual Street Street { get; set; }
     }
 }

@@ -7,84 +7,91 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=local:EditNewProductWindow}"
         Validation.Error="Window_Error"
-        Title="EditNewProductWindow" MinHeight="400" Height="132" MinWidth="393" Width="38">
+        Title="EditNewProductWindow" MinHeight="400" Height="132" MinWidth="500" Width="500">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Button Content="Назад" Padding="10 0" HorizontalAlignment="Left" Margin="0 10" Click="Button_Click"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-        <StackPanel Grid.RowSpan="10">
-            <Image Source="{Binding Product.CoverPathImg}" Width="120" MinHeight="80" Grid.Column="0"/>
-            <TextBlock Text="path"/>
-            <Button Content="Изменить изображение" Click="BtnChangeImage_Click" Background="{DynamicResource dopBack}" />
-        </StackPanel>
-        
-        <TextBlock Text="ID: " Grid.Row="0" Grid.Column="1"/>
-        <TextBlock Width="100" Text="{Binding Product.ID}" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left"/>
-        
-        <TextBlock Text="Наименование: " Grid.Row="1" Grid.Column="1"/>
-        <TextBox Width="100" Grid.Row="1" Text="{Binding Product.Name, Mode=TwoWay}"
+            <StackPanel Grid.RowSpan="10" Margin="10 0">
+                <Image Source="{Binding Product.CoverPathImg}" Width="150" MinHeight="80" Grid.Column="0"/>
+                <TextBlock Text="path"/>
+                <Button Content="Изменить изображение" Click="BtnChangeImage_Click" Background="{DynamicResource dopBack}" />
+            </StackPanel>
+
+            <TextBlock Text="ID: " Grid.Row="0" Grid.Column="1"/>
+            <TextBlock Width="100" Text="{Binding Product.ID}" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="Наименование: " Grid.Row="1" Grid.Column="1"/>
+            <TextBox Width="100" Grid.Row="1" Text="{Binding Product.Name, Mode=TwoWay}"
                  Grid.Column="2" HorizontalAlignment="Left"/>
-        
-        <TextBlock Text="Категория: " Grid.Row="2" Grid.Column="1"/>
-        <ComboBox Width="100"
+
+            <TextBlock Text="Категория: " Grid.Row="2" Grid.Column="1"/>
+            <ComboBox Width="100"
                   ItemsSource="{Binding productsCategories}"
                   SelectedItem="{Binding Product.ProductsCategory, Mode=TwoWay}"
                   DisplayMemberPath="Name"
                   Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left"/>
 
-        <TextBlock Text="Описание товара: " Grid.Row="3" Grid.Column="1"/>
-        <TextBox TextWrapping="Wrap" MaxHeight="50" Width="100" Grid.Row="3"
+            <TextBlock Text="Описание товара: " Grid.Row="3" Grid.Column="1"/>
+            <TextBox TextWrapping="Wrap" MaxHeight="50" Width="100" Grid.Row="3"
                  Text="{Binding Product.Deskription, Mode=TwoWay}"
                  Grid.Column="2" HorizontalAlignment="Left"/>
 
-        <TextBlock Text="Производитель: " Grid.Row="4" Grid.Column="1"/>
-        <ComboBox Width="100" Grid.Row="4"
+            <TextBlock Text="Производитель: " Grid.Row="4" Grid.Column="1"/>
+            <ComboBox Width="100" Grid.Row="4"
                   ItemsSource="{Binding Suppliers}"
                   SelectedItem="{Binding Product.Supplier, Mode=TwoWay}"
 
 DisplayMemberPath="Name"
                   Grid.Column="2" HorizontalAlignment="Left"/>
 
-        <TextBlock Text="Поставщик: " Grid.Row="5" Grid.Column="1"/>
-        <ComboBox Width="100" Grid.Row="5"
+            <TextBlock Text="Поставщик: " Grid.Row="5" Grid.Column="1"/>
+            <ComboBox Width="100" Grid.Row="5"
                   ItemsSource="{Binding Manufactureres}"
                   SelectedItem="{Binding Product.Manufacturer, Mode=TwoWay}"
 
                 DisplayMemberPath="Name"
                   Grid.Column="2" HorizontalAlignment="Left"/>
 
-        <TextBlock Text="Цена: " Grid.Row="6" Grid.Column="1"/>
-        <TextBox Width="100" x:Name="txtPrice" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Left" Text="{Binding Product.Prise, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"/>
+            <TextBlock Text="Цена: " Grid.Row="6" Grid.Column="1"/>
+            <TextBox Width="100" x:Name="txtPrice" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Left" Text="{Binding Product.Prise, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"/>
 
-        <TextBlock Text="Единица измерения: " Grid.Row="7" Grid.Column="1"/>
-        <TextBox Width="100" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Left" Text="{Binding Product.UnitOfMeasures, Mode=TwoWay}"/>
+            <TextBlock Text="Единица измерения: " Grid.Row="7" Grid.Column="1"/>
+            <TextBox Width="100" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Left" Text="{Binding Product.UnitOfMeasures, Mode=TwoWay}"/>
 
-        <TextBlock Text="Количество на складе: " Grid.Row="8" Grid.Column="1"/>
-        <TextBox Width="100" Grid.Row="8" Grid.Column="2" HorizontalAlignment="Left"  PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding Product.Count, Mode=TwoWay}"/>
+            <TextBlock Text="Количество на складе: " Grid.Row="8" Grid.Column="1"/>
+            <TextBox Width="100" Grid.Row="8" Grid.Column="2" HorizontalAlignment="Left"  PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding Product.Count, Mode=TwoWay}"/>
 
-        <TextBlock Text="Действующая скидка: " Grid.Row="9" Grid.Column="1"/>
-        <TextBox Width="100" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left"  PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding Product.Discount, Mode=TwoWay}"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="1" Margin="10" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-            <Button Content="Удалить" Margin="0 0 10 0" Click="BtnDelete_Click" Background="{DynamicResource dopBack}"/>
-            <Button Content="Сохранить" Click="BtnSaveOrCreate_Click" Background="{DynamicResource accentVnim}"/>
-        </StackPanel>
+            <TextBlock Text="Действующая скидка: " Grid.Row="9" Grid.Column="1"/>
+            <TextBox Width="100" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left"  PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding Product.Discount, Mode=TwoWay}"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="1" Margin="10" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                <Button Content="Удалить" Margin="0 0 10 0" Click="BtnDelete_Click" Background="{DynamicResource dopBack}"/>
+                <Button Content="Сохранить" Click="BtnSaveOrCreate_Click" Background="{DynamicResource accentVnim}"/>
+            </StackPanel>
+        </Grid>
 
     </Grid>
 </Window>

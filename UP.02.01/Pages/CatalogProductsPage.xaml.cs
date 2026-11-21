@@ -196,8 +196,19 @@ namespace UP._02._01.Pages
         private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Product product = (sender as ListBox).SelectedItem as  Product;
+            Console.WriteLine(product.Manufacturer.Name);
             var window = new EditNewProductWindow(product);
-            window.ShowDialog() ;
+            var rShd = window.ShowDialog();
+            Console.WriteLine(product.Manufacturer.Name);
+            if (rShd.Value)
+            {
+                Products.Clear();
+                foreach (Product productd in _allProducts)
+                {
+                    Products.Add(productd);
+                }
+            }
+
         }
     }
 }

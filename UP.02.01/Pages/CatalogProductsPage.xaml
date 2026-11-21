@@ -67,14 +67,14 @@
                             <TextBlock Text="{Binding Deskription}" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap"/>
 
                             <TextBlock Text="Производитель:" Grid.Row="2"/>
-                            <TextBlock Text="{Binding Supplier.Name}" Grid.Row="2" Grid.Column="1"/>
+                            <TextBlock Text="{Binding Supplier.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1"/>
 
                             <TextBlock Text="Поставщик:" Grid.Row="3"/>
-                            <TextBlock Text="{Binding Manufacturer.Name}" Grid.Row="3" Grid.Column="1"/>
+                            <TextBlock Text="{Binding Manufacturer.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1"/>
 
                             <TextBlock Text="Цена:" Grid.Row="4"/>
                             <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
-                                <TextBlock Text="{Binding Prise, StringFormat='\{0} Руб.'}" >
+                                <TextBlock Text="{Binding Prise, StringFormat='\{0:f2} Руб.'}" >
                                     <TextBlock.Style>
                                         <Style TargetType="TextBlock">
                                             <Style.Triggers >
@@ -90,7 +90,7 @@
 
                                 <TextBlock Visibility="{Binding  IsDiscount, Converter={StaticResource boolVisibleConverter}}"
                                            Margin="5 0 0 0"
-                                           Text="{Binding totalPrice, StringFormat='\{0} Руб.'}"/>
+                                           Text="{Binding totalPrice, StringFormat='\{0:F2} Руб.'}"/>
                                 
                             </StackPanel>
 

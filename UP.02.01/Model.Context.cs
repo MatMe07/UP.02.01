@@ -31,9 +31,7 @@ namespace UP._02._01
         public virtual DbSet<PickupPoint> PickupPoints { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductsCategory> ProductsCategories { get; set; }
-        public virtual DbSet<ProductsOrder> ProductsOrders { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<Street> Streets { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
