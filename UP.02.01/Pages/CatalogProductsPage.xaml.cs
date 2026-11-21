@@ -195,7 +195,7 @@ namespace UP._02._01.Pages
 
         private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Product product = (sender as ListItem).DataContext as Product;
+            Product product = (sender as ListBox).SelectedItem as  Product;
             var window = new EditNewProductWindow(product);
             window.ShowDialog() ;
         }
