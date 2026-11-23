@@ -90,7 +90,7 @@
 
                                 <TextBlock Visibility="{Binding  IsDiscount, Converter={StaticResource boolVisibleConverter}}"
                                            Margin="5 0 0 0"
-                                           Text="{Binding totalPrice, StringFormat='\{0:F2} Руб.'}"/>
+                                           Text="{Binding totalPrice, StringFormat='\{0:F2} Руб.', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 
                             </StackPanel>
 

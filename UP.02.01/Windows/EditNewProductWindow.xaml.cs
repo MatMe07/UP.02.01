@@ -95,6 +95,14 @@ namespace UP._02._01.Windows
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
+            var result = MessageBox.Show("Все дейстительно хотите удалить продукт?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                
+                Product.IsActive = false;
+                MessageBox.Show("Продукт успешно удален", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                DialogResult = true;
+            }
 
         }
 
@@ -111,8 +119,9 @@ namespace UP._02._01.Windows
             {
                 MessageBox.Show($"Error: {ex}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-
+            MessageBox.Show("Все изменения успешно сохранены", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+            DialogResult = true;
+            //Close();
         }
 
         private void Window_Error(object sender, ValidationErrorEventArgs e)
@@ -145,9 +154,9 @@ namespace UP._02._01.Windows
             {
                 //this.Close();
                 DialogResult = false;
-                Close();
+                //Close();
             }
-            if (MessageBox.Show("Есть несохраненные изменения", "Предупреждение", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show("Есть несохраненные изменения.\nВы действительно хотите выйти?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 Product.Name = origProduct.Name;
                 Product.UnitOfMeasures = origProduct.UnitOfMeasures;
@@ -161,7 +170,7 @@ namespace UP._02._01.Windows
                 Product.CoverPath= origProduct.CoverPath;
                 DialogResult = true;
 
-                this.Close();
+                //this.Close();
             }
 
             //this.Close();

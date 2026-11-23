@@ -85,6 +85,27 @@ namespace UP._02._01.Pages
             {
                 stckPanelPoisk.Visibility = Visibility.Hidden;
             }
+
+            SortingLst = new List<string> {
+                "Все",
+                "По возрастанию по количеству на складе",
+                "По убыванию по количеству на складе",
+                "По возрастанию по цене",
+                "По убыванию по цене",
+                "По возрастанию по скидке",
+                "По убыванию по скидке",
+            };
+            comboSort.ItemsSource = SortingLst;
+
+            FiltringLst = new List<string>
+            {
+                "Все диапазоны",
+                "0-11,99%",
+                "12 - 18,99 %",
+                "19 % и более",
+
+            };
+            comboFilt.ItemsSource = FiltringLst;
         }
 
         public void Sorting()
@@ -158,55 +179,30 @@ namespace UP._02._01.Pages
             PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (propertyName));
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        public void RefreshData()
         {
-            _allProducts = Core.context.Products.ToList();
-            //Categories = Core.context.ProductsCategories.Select(c=>c.Name).ToList();
-            //(по возрастанию и убыванию) по количеству на складе, цене,
-            //действующей скидке.
-            SortingLst = new List<string> { 
-                "Все",
-                "По возрастанию по количеству на складе",
-                "По убыванию по количеству на складе",
-                "По возрастанию по цене",
-                "По убыванию по цене",
-                "По возрастанию по скидке",
-                "По убыванию по скидке",
-            };
-            comboSort.ItemsSource = SortingLst;
-
-            FiltringLst = new List<string>
-            {
-                "Все диапазоны",
-                "0-11,99%",
-                "12 - 18,99 %",
-                "19 % и более",
-
-            };
-            comboFilt.ItemsSource = FiltringLst;
-            //0-11,99%, 12 - 18,99 %, 19 % и более.
-
             Products.Clear();
-            foreach (Product product in _allProducts)
+            foreach (Product product in _allProducts.Where(p=>p.IsActive))
             {
                 Products.Add(product);
             }
         }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            _allProducts = Core.context.Products.ToList();
+
+            RefreshData();
+        }
+
         private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Product product = (sender as ListBox).SelectedItem as  Product;
-            Console.WriteLine(product.Manufacturer.Name);
             var window = new EditNewProductWindow(product);
             var rShd = window.ShowDialog();
-            Console.WriteLine(product.Manufacturer.Name);
             if (rShd.Value)
             {
-                Products.Clear();
-                foreach (Product productd in _allProducts)
-                {
-                    Products.Add(productd);
-                }
+                RefreshData();
             }
 
         }
