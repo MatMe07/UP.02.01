@@ -22,7 +22,7 @@
             <TextBlock Text="Логин" Margin="0 10"/>
             <TextBox x:Name="txtLogin" Grid.Column="1" Width="110" Margin="10"/>
             <TextBlock Text="Пароль" Grid.Row="1" Margin="0 10"/>
-            <TextBox x:Name="txtPassword" Grid.Row="1" Grid.Column="1" Width="110" Margin="10"/>
+            <PasswordBox x:Name="txtPassword" Grid.Row="1" Grid.Column="1" Width="110" Margin="10"/>
             <Button Content="Войти" Grid.Row="2" Padding="10 5" Click="btnLogin_Click"/>
             <Button Content="Перейти к товарам" Grid.Row="2" Grid.Column="1" Margin="10 0" HorizontalAlignment="Left" Padding="10 5" Click="Button_Click"/>
         </Grid>

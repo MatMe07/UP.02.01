@@ -43,10 +43,10 @@ namespace UP._02._01.Windows
         private bool isNew = true;
         public EditNewProductWindow(Product product = null)
         {
-
+            isNew = product == null;
+            if (product == null) product = new Product();
             origProduct = Clone(product);
             this.Product = product ?? new Product();
-            isNew = product == null;
             InitializeComponent();
             DataContext = this;
 
@@ -95,19 +95,36 @@ namespace UP._02._01.Windows
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Все дейстительно хотите удалить продукт?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
+            var result = MessageBoxHelper.MessQuestion("Вы дейстительно хотите удалить продукт?" );
+            if (result)
             {
                 
                 Product.IsActive = false;
-                MessageBox.Show("Продукт успешно удален", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBoxHelper.MessInformation("Продукт успешно удален" );
                 DialogResult = true;
             }
 
         }
+        private bool CheckField()
+        {
+            if (string.IsNullOrWhiteSpace(Product.Name) || 
+                string.IsNullOrWhiteSpace(Product.Deskription) || 
+                string.IsNullOrWhiteSpace(Product.UnitOfMeasures) || 
+                Product.ProductsCategory == null || 
+                Product.Supplier == null || 
+                Product.Manufacturer == null || 
+                Product.Prise == 0 )
+                return false;
+            return true;
+        }
 
         private void BtnSaveOrCreate_Click(object sender, RoutedEventArgs e)
         {
+            if (!CheckField())
+            {
+                MessageBoxHelper.MessWarning("Есть незаполненные поля");
+                return;
+            }
             try
             {
                 
@@ -117,9 +134,10 @@ namespace UP._02._01.Windows
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBoxHelper.MessError($"Error: {ex}");
+                return;
             }
-            MessageBox.Show("Все изменения успешно сохранены", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBoxHelper.MessInformation(!isNew ? "Все изменения успешно сохранены": "Продукт успешно создан");
             DialogResult = true;
             //Close();
         }
@@ -129,7 +147,7 @@ namespace UP._02._01.Windows
             if (e.Action == ValidationErrorEventAction.Added)
             {
                 txtPrice.Text = Product.Prise.ToString().Replace(',', '.');
-                MessageBox.Show("Неверный формат");
+                MessageBoxHelper.MessError("Неверный формат");
             }
         }
         public Product Clone(Product product)
@@ -156,7 +174,7 @@ namespace UP._02._01.Windows
                 DialogResult = false;
                 //Close();
             }
-            if (MessageBox.Show("Есть несохраненные изменения.\nВы действительно хотите выйти?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBoxHelper.MessQuestion("Есть несохраненные изменения.\n\nВы действительно хотите выйти?"))
             {
                 Product.Name = origProduct.Name;
                 Product.UnitOfMeasures = origProduct.UnitOfMeasures;

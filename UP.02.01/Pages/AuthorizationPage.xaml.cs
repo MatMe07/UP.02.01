@@ -33,17 +33,20 @@ namespace UP._02._01.Pages
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtLogin.Text)
-                || string.IsNullOrEmpty(txtPassword.Text))
+                || string.IsNullOrEmpty(txtPassword.Password))
             {
                 MessageBoxHelper.MessError("Заполните все поля!");
                 return;
             }
-            var user = Core.context.Users.FirstOrDefault(u=>u.Login ==  txtLogin.Text && u.Password == txtPassword.Text);
-            if (user != null)
+            var user = Core.context.Users.FirstOrDefault(u=>u.Login ==  txtLogin.Text && u.Password == txtPassword.Password);
+            if (user == null)
             {
                 MessageBoxHelper.MessError("Нет такого пользователя");
                 return;
             }
+            MessageBoxHelper.MessInformation("Вы успешно вошли в систему");
+            UserData.User = user;
+            NavigationService.Navigate(new CatalogProductsPage(false));
 
         }
     }

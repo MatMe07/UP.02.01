@@ -13,9 +13,12 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" x:Name="stckPanelPoisk" Margin="0 0 0 10">
+        <Button Content="Назад" Padding="10 0" HorizontalAlignment="Left" x:Name="btnBack" Margin="0 5" Click="Button_Click"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" x:Name="stckPanelPoisk" Margin="0 0 0 10">
             <TextBox MinWidth="200" Margin="0 0 5 0" VerticalAlignment="Bottom" Text="{Binding TxtSearch, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"/>
             <StackPanel Margin="5 0">
                 <TextBlock Text="Сортировка" />
@@ -29,8 +32,9 @@
                 <ComboBox Width="130" x:Name="comboFilt" SelectedItem="{Binding FiltText}"/>
                 
             </StackPanel>
+            <Button Content="Добавить продукт" x:Name="btnCreateProuduct" Padding="10 5" Margin="10 0" VerticalAlignment="Bottom" Click="btnCreateProuduct_Click"/>
         </StackPanel>
-        <ListBox Grid.Row="1"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+        <ListBox Grid.Row="2"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ItemsSource="{Binding Products}" HorizontalContentAlignment="Stretch" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="ListBox_MouseDoubleClick">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -135,5 +139,6 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>-->
         </ListBox>
+        
     </Grid>
 </Page>

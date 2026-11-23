@@ -24,5 +24,16 @@ namespace UP._02._01
         {
             InitializeComponent();
         }
+
+        private void Frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            if (UserData.IsAuth)
+            {
+                
+                btnOrder.Visibility =  UserData.User.IsAdmin ? Visibility.Visible : Visibility.Collapsed;
+                txtUserName.Visibility = Visibility.Visible;
+                txtUserName.Text = UserData.User.FIO;
+            }
+        }
     }
 }

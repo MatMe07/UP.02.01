@@ -181,6 +181,8 @@ namespace UP._02._01.Pages
 
         public void RefreshData()
         {
+            _allProducts = Core.context.Products.ToList();
+
             Products.Clear();
             foreach (Product product in _allProducts.Where(p=>p.IsActive))
             {
@@ -190,9 +192,12 @@ namespace UP._02._01.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            _allProducts = Core.context.Products.ToList();
-
+            
             RefreshData();
+
+            btnBack.Visibility =  UserData.IsAuth ? Visibility.Collapsed : Visibility.Visible;
+            btnCreateProuduct.Visibility =  UserData.User?.IsAdmin ?? false ? Visibility.Visible : Visibility.Collapsed;
+            
         }
 
         private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -205,6 +210,22 @@ namespace UP._02._01.Pages
                 RefreshData();
             }
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void btnCreateProuduct_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new EditNewProductWindow();
+            var rShd = window.ShowDialog();
+            if (rShd.Value)
+            {
+
+                RefreshData();
+            }
         }
     }
 }
