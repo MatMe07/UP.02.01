@@ -43,6 +43,18 @@ namespace UP._02._01.Windows
         public ObservableCollection<Supplier> Suppliers { get; } = new ObservableCollection<Supplier>();
         public ObservableCollection<Manufacturer> Manufactureres { get; } = new ObservableCollection<Manufacturer>();
         private bool isNew = true;
+        private string pathDirectory;
+
+        private string _coverPahtName;
+        public string CoverPahtName
+        {
+            get => _coverPahtName;
+            set
+            {
+                _coverPahtName = value;
+                OnPropertyChanged(nameof(CoverPahtName));
+            }
+        }
         public EditNewProductWindow(Product product = null)
         {
             isNew = product == null;
@@ -50,9 +62,13 @@ namespace UP._02._01.Windows
             origProduct = Clone(product);
             this.Product = product ?? new Product();
             InitializeComponent();
+            DataContext = this;
+
             btnDelete.Visibility = isNew ? Visibility.Collapsed : Visibility.Visible;
 
-            DataContext = this;
+            pathDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            pathDirectory = $"{pathDirectory}\\images";
+            CoverPahtName = Product.CoverPath;
 
             var categories = Core.context.ProductsCategories;
 
@@ -92,22 +108,29 @@ namespace UP._02._01.Windows
             e.Handled = !char.IsDigit(e.Text[0]);
         }
 
+        private void SaveImg()
+        {
+            var filePath = Product.CoverPath;
+
+            var path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
+            Console.WriteLine(path);
+            var fileName = Path.GetFileName(filePath);
+            File.Copy(filePath, $"{pathDirectory}\\{CoverPahtName}");
+        }
+
         private void BtnChangeImage_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine(Product.CoverPathImg);
             var res = new OpenFileDialog();
             res.Filter = "(*.png)|*.png|(*.jpg)|*.jpg";
-            
-                var path =  Directory.GetParent( Directory.GetCurrentDirectory()).FullName;
-            Console.WriteLine(path);
+
 
             if (res.ShowDialog() == true)
             {
                 var filePath = res.FileName;
-                var fileName = Path.GetFileName(filePath);
-                Product.CoverPath = fileName;
+                Product.CoverPath = filePath;
+                CoverPahtName = Path.GetFileName(filePath);
                 OnPropertyChanged(nameof(Product));
-                //File.Copy(fileName, );
             }
 
         }
@@ -150,6 +173,8 @@ namespace UP._02._01.Windows
                 //Product.Articule = Product.Articule;
                 Core.context.Products.AddOrUpdate(Product);
                 Core.context.SaveChanges();
+                if (Product.CoverPath != origProduct.CoverPath)
+                    SaveImg();
             }
             catch (Exception ex)
             {
@@ -195,6 +220,7 @@ namespace UP._02._01.Windows
             }
             if (MessageBoxHelper.MessQuestion("Есть несохраненные изменения.\n\nВы действительно хотите выйти?"))
             {
+                Product.CoverPath = null;
                 Product.Name = origProduct.Name;
                 Product.UnitOfMeasures = origProduct.UnitOfMeasures;
                 Product.Prise= origProduct.Prise;

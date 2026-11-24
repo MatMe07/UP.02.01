@@ -37,7 +37,7 @@
 
             <StackPanel Grid.RowSpan="10" MaxWidth="150" Margin="10 0">
                 <Image Source="{Binding Product.CoverPathImg}" Width="150" MinHeight="80" Grid.Column="0"/>
-                <TextBlock Text="{Binding Product.CoverPathImg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding CoverPahtName}" TextWrapping="Wrap"/>
                 <Button Content="Изменить изображение" Click="BtnChangeImage_Click" Background="{DynamicResource dopBack}" />
             </StackPanel>
 

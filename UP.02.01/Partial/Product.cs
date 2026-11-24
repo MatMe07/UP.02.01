@@ -15,7 +15,7 @@ namespace UP._02._01
         {
             get
             {
-                return CoverPath == null ? _coverPathImg : $"\\images\\{CoverPath}";
+                return CoverPath == null ? _coverPathImg : CoverPath.StartsWith("C:") ? CoverPath : $"\\images\\{CoverPath}";
             }
             set
             {
