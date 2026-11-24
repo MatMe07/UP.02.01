@@ -4,12 +4,24 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace UP._02._01
 {
     public partial class Product 
     {
-        public string CoverPathImg => CoverPath == null ? "\\images\\picture.png" : $"\\images\\{CoverPath}";
+        private string _coverPathImg = "\\images\\picture.png";
+        public string CoverPathImg
+        {
+            get
+            {
+                return CoverPath == null ? _coverPathImg : $"\\images\\{CoverPath}";
+            }
+            set
+            {
+                _coverPathImg = value;
+            }
+        }
         public bool IsDiscountBig => Count > 0 && Discount > 15;
 
         private bool _isActive = true;

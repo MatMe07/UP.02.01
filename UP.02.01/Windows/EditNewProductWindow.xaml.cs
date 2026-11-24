@@ -1,9 +1,11 @@
 ﻿
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity.Migrations;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -15,7 +17,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+//using System.Windows.Shapes;
 
 namespace UP._02._01.Windows
 {
@@ -48,6 +50,8 @@ namespace UP._02._01.Windows
             origProduct = Clone(product);
             this.Product = product ?? new Product();
             InitializeComponent();
+            btnDelete.Visibility = isNew ? Visibility.Collapsed : Visibility.Visible;
+
             DataContext = this;
 
             var categories = Core.context.ProductsCategories;
@@ -90,7 +94,22 @@ namespace UP._02._01.Windows
 
         private void BtnChangeImage_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(Product.Manufacturer.Name);
+            Console.WriteLine(Product.CoverPathImg);
+            var res = new OpenFileDialog();
+            res.Filter = "(*.png)|*.png|(*.jpg)|*.jpg";
+            
+                var path =  Directory.GetParent( Directory.GetCurrentDirectory()).FullName;
+            Console.WriteLine(path);
+
+            if (res.ShowDialog() == true)
+            {
+                var filePath = res.FileName;
+                var fileName = Path.GetFileName(filePath);
+                Product.CoverPath = fileName;
+                OnPropertyChanged(nameof(Product));
+                //File.Copy(fileName, );
+            }
+
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)

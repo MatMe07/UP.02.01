@@ -35,9 +35,9 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.RowSpan="10" Margin="10 0">
+            <StackPanel Grid.RowSpan="10" MaxWidth="150" Margin="10 0">
                 <Image Source="{Binding Product.CoverPathImg}" Width="150" MinHeight="80" Grid.Column="0"/>
-                <TextBlock Text="path"/>
+                <TextBlock Text="{Binding Product.CoverPathImg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
                 <Button Content="Изменить изображение" Click="BtnChangeImage_Click" Background="{DynamicResource dopBack}" />
             </StackPanel>
 
@@ -65,7 +65,7 @@
                   ItemsSource="{Binding Suppliers}"
                   SelectedItem="{Binding Product.Supplier, Mode=TwoWay}"
 
-DisplayMemberPath="Name"
+                DisplayMemberPath="Name"
                   Grid.Column="2" HorizontalAlignment="Left"/>
 
             <TextBlock Text="Поставщик: " Grid.Row="5" Grid.Column="1"/>
@@ -88,7 +88,7 @@ DisplayMemberPath="Name"
             <TextBlock Text="Действующая скидка: " Grid.Row="9" Grid.Column="1"/>
             <TextBox Width="100" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left"  PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding Product.Discount, Mode=TwoWay}"/>
             <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="1" Margin="10" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-                <Button Content="Удалить" Margin="0 0 10 0" Click="BtnDelete_Click" Background="{DynamicResource dopBack}"/>
+                <Button Content="Удалить" x:Name="btnDelete" Margin="0 0 10 0" Click="BtnDelete_Click" Background="{DynamicResource dopBack}"/>
                 <Button Content="Сохранить" Click="BtnSaveOrCreate_Click" Background="{DynamicResource accentVnim}"/>
             </StackPanel>
         </Grid>
