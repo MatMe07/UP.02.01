@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace UP._02._01
         {
             get
             {
-                return CoverPath == null ? _coverPathImg : CoverPath.StartsWith("C:") ? CoverPath : $"\\images\\{CoverPath}";
+                return CoverPath == null ? _coverPathImg : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", CoverPath);
             }
             set
             {

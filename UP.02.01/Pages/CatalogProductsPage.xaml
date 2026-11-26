@@ -45,7 +45,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding CoverPathImg}" Width="120" Margin="10"/>
+                        <Image Source="{Binding CoverPathImg}" Width="120" MaxHeight="130" Margin="10"/>
                         <Grid Grid.Column="1" Margin="10" >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>

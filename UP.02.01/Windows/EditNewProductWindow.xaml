@@ -36,8 +36,8 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.RowSpan="10" MaxWidth="150" Margin="10 0">
-                <Image Source="{Binding Product.CoverPathImg}" Width="150" MinHeight="80" Grid.Column="0"/>
-                <TextBlock Text="{Binding CoverPahtName}" TextWrapping="Wrap"/>
+                <Image Source="{Binding CoverPath}" Width="150" MinHeight="80" MaxHeight="130" Grid.Column="0"/>
+                <TextBlock Text="{Binding Product.CoverPath}" TextWrapping="Wrap"/>
                 <Button Content="Изменить изображение" Click="BtnChangeImage_Click" Background="{DynamicResource dopBack}" />
             </StackPanel>
 

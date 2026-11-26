@@ -127,6 +127,9 @@
     <Compile Include="Pages\CatalogProductsPage.xaml.cs">
       <DependentUpon>CatalogProductsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\OrderPage.xaml.cs">
+      <DependentUpon>OrderPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Partial\Product.cs" />
     <Compile Include="Partial\User.cs" />
     <Compile Include="PickupPoint.cs">
@@ -175,6 +178,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\OrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\EditNewProductWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -217,45 +224,45 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\1.JPG">
+    <Content Include="images\1.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\10.JPG">
+    </Content>
+    <Content Include="images\10.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\2.JPG">
+    </Content>
+    <Content Include="images\2.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\3.JPG">
+    </Content>
+    <Content Include="images\3.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\4.JPG">
+    </Content>
+    <Content Include="images\4.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\6.JPG">
+    </Content>
+    <Content Include="images\6.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\7.JPG">
+    </Content>
+    <Content Include="images\7.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\8.JPG">
+    </Content>
+    <Content Include="images\8.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\9.JPG">
+    </Content>
+    <Content Include="images\9.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\icon.ico">
+    </Content>
+    <Content Include="images\icon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\icon.jpg">
+    </Content>
+    <Content Include="images\icon.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\icon.png">
+    </Content>
+    <Content Include="images\icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\picture.png">
+    </Content>
+    <Content Include="images\picture.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -265,7 +272,9 @@
     <Folder Include="docs\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\5.JPG" />
+    <Content Include="images\5.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>

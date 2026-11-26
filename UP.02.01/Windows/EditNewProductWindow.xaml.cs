@@ -45,14 +45,14 @@ namespace UP._02._01.Windows
         private bool isNew = true;
         private string pathDirectory;
 
-        private string _coverPahtName;
-        public string CoverPahtName
+        private string _coverPaht;
+        public string CoverPath
         {
-            get => _coverPahtName;
+            get => _coverPaht;
             set
             {
-                _coverPahtName = value;
-                OnPropertyChanged(nameof(CoverPahtName));
+                _coverPaht = value;
+                OnPropertyChanged(nameof(CoverPath));
             }
         }
         public EditNewProductWindow(Product product = null)
@@ -68,14 +68,13 @@ namespace UP._02._01.Windows
 
             pathDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
             pathDirectory = $"{pathDirectory}\\images";
-            CoverPahtName = Product.CoverPath;
+            CoverPath = Product.CoverPathImg;
 
             var categories = Core.context.ProductsCategories;
 
             productsCategories.Clear();
             foreach (ProductsCategory category in categories)
             {
-                
                 productsCategories.Add(category);
             }
 
@@ -110,12 +109,15 @@ namespace UP._02._01.Windows
 
         private void SaveImg()
         {
-            var filePath = Product.CoverPath;
-
+            //var filePath = Product.CoverPath;
+            string targetDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images");
+            Directory.CreateDirectory(targetDir);
             var path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
             Console.WriteLine(path);
-            var fileName = Path.GetFileName(filePath);
-            File.Copy(filePath, $"{pathDirectory}\\{CoverPahtName}");
+            string destPath = Path.Combine(targetDir, Product.CoverPath);
+
+            File.Copy(CoverPath, destPath, true);
+            //File.Copy(CoverPath, $"{pathDirectory}\\{Product.CoverPath}");
         }
 
         private void BtnChangeImage_Click(object sender, RoutedEventArgs e)
@@ -128,8 +130,8 @@ namespace UP._02._01.Windows
             if (res.ShowDialog() == true)
             {
                 var filePath = res.FileName;
-                Product.CoverPath = filePath;
-                CoverPahtName = Path.GetFileName(filePath);
+                CoverPath = filePath;
+                Product.CoverPath = Path.GetFileName(filePath);
                 OnPropertyChanged(nameof(Product));
             }
 

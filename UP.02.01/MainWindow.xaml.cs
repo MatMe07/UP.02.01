@@ -30,10 +30,15 @@ namespace UP._02._01
             if (UserData.IsAuth)
             {
                 
-                btnOrder.Visibility =  UserData.User.IsAdmin ? Visibility.Visible : Visibility.Collapsed;
+                //btnOrder.Visibility =  UserData.User.IsAdmin ? Visibility.Visible : Visibility.Collapsed;
                 txtUserName.Visibility = Visibility.Visible;
                 txtUserName.Text = UserData.User.FIO;
             }
+        }
+
+        private void btnOrder_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
