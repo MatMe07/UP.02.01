@@ -26,7 +26,8 @@ namespace UP._02._01.Pages
         public OrderPage() 
         {
             InitializeComponent();
-
+            DataContext = this;
+            Refresh();
         }
 
         public void Refresh()
@@ -37,6 +38,16 @@ namespace UP._02._01.Pages
             {
                 Orders.Add(item);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

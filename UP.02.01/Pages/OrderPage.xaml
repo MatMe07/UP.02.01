@@ -14,10 +14,13 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListBox ItemsSource="{Binding Orders}" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=5}" >
+        <Button Content="Назад" Padding="10 0" HorizontalAlignment="Left" x:Name="btnBack" Margin="0 5" Click="Button_Click"/>
+
+        <ListBox ItemsSource="{Binding Orders}" Grid.Row="1" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="ListBox_MouseDoubleClick" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Border BorderThickness="1" BorderBrush="Black" Padding="10">
+                        <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="auto"/>
@@ -31,12 +34,14 @@
                         <TextBlock Text="{Binding Articule}" Grid.Row="0"/>
                         <TextBlock Text="{Binding CodeOptaining}" Grid.Row="1"/>
                         <TextBlock Text="{Binding PickupPoint.Address}" Grid.Row="2"/>
-                        <TextBlock Text="{Binding DateOrder}" Grid.Row="3"/>
+                        <TextBlock Text="{Binding DateOrder, StringFormat='\{0:f}'}" Grid.Row="3"/>
 
-                        <TextBlock Text="{Binding DateDelivery}" Grid.RowSpan="4" Grid.Column="1"/>
+                        <TextBlock Text="{Binding DateDelivery, StringFormat='\{0:f}'}" VerticalAlignment="Center" Grid.RowSpan="4" Grid.Column="1"/>
 
 
                     </Grid>
+                        
+                    </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UP._02._01.Pages;
 
 namespace UP._02._01
 {
@@ -38,7 +39,7 @@ namespace UP._02._01
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
-
+            mainFrame.NavigationService.Navigate(new OrderPage());
         }
     }
 }
