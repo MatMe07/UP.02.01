@@ -77,7 +77,7 @@
                   Grid.Column="2" HorizontalAlignment="Left"/>
 
             <TextBlock Text="Цена: " Grid.Row="6" Grid.Column="1"/>
-            <TextBox Width="100" x:Name="txtPrice" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Left" Text="{Binding Product.Prise, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"/>
+            <TextBox Width="100" x:Name="txtPrice" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Left" Text="{Binding Product.Prise, StringFormat='\{0:f2}', Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"/>
 
             <TextBlock Text="Единица измерения: " Grid.Row="7" Grid.Column="1"/>
             <TextBox Width="100" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Left" Text="{Binding Product.UnitOfMeasures, Mode=TwoWay}"/>

@@ -105,12 +105,15 @@
                             <TextBlock Text="{Binding Count}" Grid.Row="6" Grid.Column="1"/>
 
                         </Grid>
-                        
-                        <TextBlock Grid.Column="2" HorizontalAlignment="Center" Text="{Binding Discount, StringFormat='\{0} %'}"
-                                   
-                                   VerticalAlignment="Center" FontWeight="Black" FontSize="20">
 
-                        </TextBlock>
+                        <Border Grid.Column="2" BorderThickness="1" BorderBrush="Black" Padding="10">
+                            
+                            <TextBlock HorizontalAlignment="Center" Text="{Binding Discount, StringFormat='\{0} %'}"
+                                   
+                                       VerticalAlignment="Center" FontWeight="Black" FontSize="20">
+
+                            </TextBlock>
+                        </Border>
                         <Grid.Style>
                             <Style TargetType="Grid">
                                 <Style.Triggers >

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UP._02._01.Windows;
 
 namespace UP._02._01.Pages
 {
@@ -27,10 +28,10 @@ namespace UP._02._01.Pages
         {
             InitializeComponent();
             DataContext = this;
-            Refresh();
+            RefreshData();
         }
 
-        public void Refresh()
+        public void RefreshData()
         {
             _AllOrders = Core.context.Orders.ToList();
             Orders.Clear();
@@ -47,7 +48,26 @@ namespace UP._02._01.Pages
 
         private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            Order order = (sender as ListBox).SelectedItem as Order;
 
+            var window = new EditNewOrderWindow(order);
+            var rShd = window.ShowDialog();
+            if (rShd.Value)
+            {
+
+                RefreshData();
+            }
+        }
+
+        private void btnAddOrder_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new EditNewOrderWindow();
+            var rShd = window.ShowDialog();
+            if (rShd.Value)
+            {
+
+                RefreshData();
+            }
         }
     }
 }

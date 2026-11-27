@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity.Migrations;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -142,7 +143,6 @@ namespace UP._02._01.Windows
             var result = MessageBoxHelper.MessQuestion("Вы дейстительно хотите удалить продукт?" );
             if (result)
             {
-                
                 Product.IsActive = false;
                 MessageBoxHelper.MessInformation("Продукт успешно удален" );
                 DialogResult = true;

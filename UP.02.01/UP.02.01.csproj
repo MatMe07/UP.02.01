@@ -151,6 +151,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="UserData.cs" />
+    <Compile Include="Windows\EditNewOrderWindow.xaml.cs">
+      <DependentUpon>EditNewOrderWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\EditNewProductWindow.xaml.cs">
       <DependentUpon>EditNewProductWindow.xaml</DependentUpon>
     </Compile>
@@ -179,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\OrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EditNewOrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -260,6 +267,7 @@
     <Content Include="images\icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\img.png" />
     <Content Include="images\picture.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
