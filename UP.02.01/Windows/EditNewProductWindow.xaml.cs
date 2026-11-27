@@ -130,8 +130,12 @@ namespace UP._02._01.Windows
 
             if (res.ShowDialog() == true)
             {
+                //if (res.)
                 var filePath = res.FileName;
+                var fileInfo = new FileInfo(filePath);
+
                 CoverPath = filePath;
+                
                 Product.CoverPath = Path.GetFileName(filePath);
                 OnPropertyChanged(nameof(Product));
             }
