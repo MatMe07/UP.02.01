@@ -197,11 +197,12 @@ namespace UP._02._01.Pages
 
             btnBack.Visibility =  UserData.IsAuth ? Visibility.Collapsed : Visibility.Visible;
             btnCreateProuduct.Visibility =  UserData.User?.IsAdmin ?? false ? Visibility.Visible : Visibility.Collapsed;
-            
+            stckPanelPoisk.Visibility = (UserData.User?.RoleId != 1 ) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (!UserData.User?.IsAdmin??true) return;
             Product product = (sender as ListBox).SelectedItem as  Product;
             var window = new EditNewProductWindow(product);
             var rShd = window.ShowDialog();

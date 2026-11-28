@@ -137,6 +137,17 @@ namespace UP._02._01.Windows
             if (result)
             {
                 //Product.IsActive = false;
+                try
+                {
+                    Core.context.Products.Remove(Product);
+                    Core.context.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    MessageBoxHelper.MessError("Продукт не удален");
+                    DialogResult = false;
+                    return;
+                }
                 MessageBoxHelper.MessInformation("Продукт успешно удален" );
                 DialogResult = true;
             }

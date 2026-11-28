@@ -9,6 +9,7 @@ namespace UP._02._01
     public partial class User
     {
         public bool IsAdmin => RoleId == 3;
+        public bool IsManager => RoleId == 2;
 
         public string FIO => $"{FirstName} {LastName} {MiddleName}";
     }

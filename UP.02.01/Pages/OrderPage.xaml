@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <Button Content="Назад" Padding="10 0" HorizontalAlignment="Left" x:Name="btnBack" Margin="0 5" Click="Button_Click"/>
-            <Button Content="Создать заказ" Padding="10 0" HorizontalAlignment="Left"  Margin="0 5" Click="btnAddOrder_Click"/>
+            <Button Content="Создать заказ" Padding="10 0" x:Name="btnCreateOrder" HorizontalAlignment="Left"  Margin="0 5" Click="btnAddOrder_Click"/>
             
         </StackPanel>
 

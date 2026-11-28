@@ -29,6 +29,7 @@ namespace UP._02._01.Pages
             InitializeComponent();
             DataContext = this;
             RefreshData();
+            btnCreateOrder.Visibility = UserData.User?.IsAdmin ?? true ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public void RefreshData()
