@@ -23,6 +23,7 @@ namespace UP._02._01
                 _coverPathImg = value;
             }
         }
+
         public bool IsDiscountBig => Count > 0 && Discount > 15;
 
         private bool _isActive = true;

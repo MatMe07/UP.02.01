@@ -35,12 +35,12 @@ namespace UP._02._01.Windows
             }
         }
         private bool isNew = false;
-        public ObservableCollection<OrderStatus> orderStatuses { get; } = new ObservableCollection<OrderStatus>();
-        public ObservableCollection<PickupPoint> PickupPoints { get; } = new ObservableCollection<PickupPoint>();
+        public List<OrderStatus> orderStatuses { get; set; } 
+        public List<PickupPoint> PickupPoints { get; set; }
         public EditNewOrderWindow(Order order = null)
         {
             isNew = order == null;
-            order = order ?? new Order();
+            order = order ?? new Order() { DateOrder = DateTime.Now, DateDelivery = DateTime.Now.AddDays(2)};
             Order = order;
 
             _OldOrder.ID = order.ID;
@@ -49,18 +49,9 @@ namespace UP._02._01.Windows
             _OldOrder.CodeOptaining = order.CodeOptaining;
             _OldOrder.OrderStatus = order.OrderStatus;
 
-            var ordStatuses = Core.context.OrderStatuses;
-            orderStatuses.Clear();
-            foreach (OrderStatus status in ordStatuses)
-            {
-                orderStatuses.Add(status);
-            }
+            orderStatuses = Core.context.OrderStatuses.ToList();
 
-            var punktVidachi = Core.context.PickupPoints;
-            foreach (var item in punktVidachi)
-            {
-                PickupPoints.Add(item);
-            }
+            PickupPoints = Core.context.PickupPoints.ToList();
 
             InitializeComponent();
             DataContext = this;

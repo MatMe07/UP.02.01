@@ -41,8 +41,8 @@ namespace UP._02._01.Windows
         private Product origProduct;
 
         public ObservableCollection<ProductsCategory> productsCategories { get; } = new ObservableCollection<ProductsCategory>();
-        public ObservableCollection<Supplier> Suppliers { get; } = new ObservableCollection<Supplier>();
-        public ObservableCollection<Manufacturer> Manufactureres { get; } = new ObservableCollection<Manufacturer>();
+        public List<Supplier> Suppliers { get; set; }
+        public List<Manufacturer> Manufactureres { get; set; } 
         private bool isNew = true;
         private string pathDirectory;
 
@@ -62,6 +62,11 @@ namespace UP._02._01.Windows
             if (product == null) product = new Product();
             origProduct = Clone(product);
             this.Product = product ?? new Product();
+
+
+            Suppliers = Core.context.Suppliers.ToList();
+            Manufactureres = Core.context.Manufacturers.ToList();
+
             InitializeComponent();
             DataContext = this;
 
@@ -78,22 +83,6 @@ namespace UP._02._01.Windows
             {
                 productsCategories.Add(category);
             }
-
-            var suppliers = Core.context.Suppliers;
-            Suppliers.Clear();
-            foreach (Supplier supplier in suppliers)
-            {
-                Suppliers.Add(supplier);
-            }
-
-
-            var manufactures = Core.context.Manufacturers;
-            Manufactureres.Clear();
-            foreach (Manufacturer manufacturer in manufactures)
-            {
-                Manufactureres.Add(manufacturer);
-            }
-
 
         }
 
@@ -147,12 +136,13 @@ namespace UP._02._01.Windows
             var result = MessageBoxHelper.MessQuestion("Вы дейстительно хотите удалить продукт?" );
             if (result)
             {
-                Product.IsActive = false;
+                //Product.IsActive = false;
                 MessageBoxHelper.MessInformation("Продукт успешно удален" );
                 DialogResult = true;
             }
 
         }
+
         private bool CheckField()
         {
             if (string.IsNullOrWhiteSpace(Product.Name) || 

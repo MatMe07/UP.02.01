@@ -184,7 +184,7 @@ namespace UP._02._01.Pages
             _allProducts = Core.context.Products.ToList();
 
             Products.Clear();
-            foreach (Product product in _allProducts.Where(p=>p.IsActive))
+            foreach (Product product in _allProducts)
             {
                 Products.Add(product);
             }
